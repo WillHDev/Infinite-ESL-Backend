@@ -1,5 +1,3 @@
-'use strict';
-
 
 "use strict";
 
@@ -29,6 +27,10 @@ app.use(
 );
 
 
+
+
+
+
 app.use("/api/resources", resourcesRouter);
 
 function runServer(port = PORT) {
@@ -42,7 +44,9 @@ function runServer(port = PORT) {
     });
 }
 
-
+if (require.main === module) {
+  runServer();
+}
 
 // if (require.main === module) {
 //   dbConnect();
