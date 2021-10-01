@@ -13,6 +13,7 @@ const fs = require("fs");
 
 
 const path = require("path");
+const { reset } = require("nodemon");
 //fn resolve
 const pathToFile = path.resolve("./data.json");
 // const cors = require("cors");
@@ -27,7 +28,7 @@ const pathToFile = path.resolve("./data.json");
 const getResources = () => JSON.parse(fs.readFileSync(pathToFile));
 
 router.get("/", (req, res, next) => {
-    console.log("endpoint hit");
+    console.log("Get all endpoint hit");
     const resources = getResources();
     console.log(resources);
     return res.send(resources);
@@ -43,5 +44,13 @@ router.get("/", (req, res, next) => {
 //       next(err);
 //     });
 });
+
+router.post("/", (req, res) => {
+    console.log("Data has hit post endpoint");
+    console.log(req.query);
+    res.send("Data has been received");
+});
+
+
 
 module.exports = router;
