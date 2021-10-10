@@ -47,7 +47,7 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res) => {
     console.log("Data has hit post endpoint");
-    console.log(req.query);
+    console.log(req.body);
     res.send("Data has been received");
 });
 

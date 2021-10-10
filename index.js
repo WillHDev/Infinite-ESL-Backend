@@ -8,11 +8,13 @@ const morgan = require('morgan');
 
 const { PORT, CLIENT_ORIGIN } = require("./config");
 const resourcesRouter = require("./routes/resources");
-
+const bp = require('body-parser')
 //const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
 const app = express();
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {

@@ -6,7 +6,9 @@
         "link": "https://link.com",
         "proiority": 3,
         "timeToFinish": 120,
-        "status": "active"
+        "status": "active",
+        "creator": "u1",
+        "assignedTo":"u1"
     },
     {
         "id": "2",
@@ -15,7 +17,9 @@
         "link": "https://link.com",
         "proiority": 2,
         "timeToFinish": 60,
-        "status": "inactive"
+        "status": "inactive",
+        "creator": "u2",
+        "assignedTo":"u1"
     },
     {
         "id": "3",
@@ -24,6 +28,8 @@
         "link": "https://link.com",
         "proiority": 1,
         "timeToFinish": 30,
-        "status": "inactive"
+        "status": "inactive",
+        "creator": "u2",
+        "assignedTo":"u2"
     }
 ]
