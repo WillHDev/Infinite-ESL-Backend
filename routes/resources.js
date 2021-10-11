@@ -45,13 +45,35 @@ router.get("/", (req, res, next) => {
 //       next(err);
 //     });
 });
+router.get("/:id",  (req, res, next) => {
+    console.log("resource id hit with get");
+        const taskId = req.params.id; // { pid: 'p1' }
+      
+        const task = getResources().find(p => {
+          return p.id === taskId;
+        });
+      
+        if (!task) {
+          throw new HttpError('Could not find a task for the provided id.', 404);
+        }
+      
+        res.json({ task }); // => { task } => { task: task }
+      }
+)
 
 router.post("/", (req, res) => {
     console.log("Data has hit post endpoint");
     console.log(req.body);
+    
     res.send("Data has been received");
 });
 
+// const createdtask = new Task({
+//     title,
+//     description,
+//     tags, 
+//     assignedTo
+// });
 
 
 module.exports = router;
