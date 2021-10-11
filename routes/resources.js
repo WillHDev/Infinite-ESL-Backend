@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const Task = require('../models/task');
 //needed or disruptive?
 const fs = require("fs");
 // const jsonParser = bodyParser.json();

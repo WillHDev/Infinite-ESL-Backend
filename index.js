@@ -4,6 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 //const passport = require("passport");
 
 const { PORT, CLIENT_ORIGIN } = require("./config");
@@ -31,24 +32,34 @@ app.use(
 //
 
 
+mongoose
+  .connect('mongodb+srv://newuser:apple1@cluster0.djwww.mongodb.net/tasks?retryWrites=true&w=majority') 
+  .then( ()=>{
+    app.listen(PORT);
+  }
 
+  )
+  .catch(err => {
+    console.log(err);
+  } );
 
 app.use("/api/resources", resourcesRouter);
 
-function runServer(port = PORT) {
-  const server = app
-    .listen(port, () => {
-      console.info(`App listening on port ${server.address().port}`);
-    })
-    .on('error', err => {
-      console.error('Express failed to start');
-      console.error(err);
-    });
-}
+// function runServer(port = PORT) {
+  
+//   const server = app
+//     .listen(port, () => {
+//       console.info(`App listening on port ${server.address().port}`);
+//     })
+//     .on('error', err => {
+//       console.error('Express failed to start');
+//       console.error(err);
+//     });
+// }
 
-if (require.main === module) {
-  runServer();
-}
+// if (require.main === module) {
+//   runServer();
+// }
 
 // if (require.main === module) {
 //   dbConnect();
