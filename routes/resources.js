@@ -17,6 +17,10 @@ const path = require("path");
 const { reset } = require("nodemon");
 //fn resolve
 const pathToFile = path.resolve("./data.json");
+
+const { check } = require('express-validator');
+
+const tasksControllers = require('../controllers/tasks-controllers');
 // const cors = require("cors");
 
  
@@ -45,6 +49,9 @@ router.get("/", (req, res, next) => {
 //       next(err);
 //     });
 });
+
+router.get('/user/:uid', tasksControllers.getTasksByUserId);
+
 router.get("/:id",  (req, res, next) => {
     console.log("resource id hit with get");
         const taskId = req.params.id; // { pid: 'p1' }

@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "title": "Learning Singleton Pattern",
         "description": "I would like to learn singleton in JS language because it's important for my job",
         "link": "https://link.com",
