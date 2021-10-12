@@ -10,9 +10,21 @@ const taskSchema = new Schema({
     ] ,
     assignedTo: [{
        
-    name: {type: String, required: true}
-    }]
+    name: {type: String, required: true},
+    id: {type: String, required: true}
+    }],
+    creator: {type: String, required: true}
 });
+
+
+taskSchema.set("toObject", {
+    virtuals: true,
+    versionKey: false,
+    transform: (doc, ret) => {
+      ret.id = ret._id;
+      delete ret._id;
+    }
+  });
 
 module.exports = mongoose.model('Task', taskSchema);
 

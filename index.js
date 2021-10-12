@@ -14,8 +14,10 @@ const bp = require('body-parser')
 // const {dbConnect} = require('./db-knex');
 
 const app = express();
-app.use(bp.json())
-app.use(bp.urlencoded({ extended: true }))
+//TODO Body PArser
+app.use(bp.urlencoded({ extended: true }));
+app.use(bp.json());
+
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {

@@ -45,10 +45,15 @@ const getTasksByUserId = (req, res, next) => {
   };
 
 
-
+// const createdtask = new Task({
+//     title,
+//     description,
+//     tags, 
+//     assignedTo
+// });
 
 //exports.getPlaceById = getPlaceById;
 exports.getTasksByUserId = getTasksByUserId;
-// exports.createPlace = createPlace;
+//exports.createPlace = createPlace;
 // exports.updatePlace = updatePlace;
 // exports.deletePlace = deletePlace;

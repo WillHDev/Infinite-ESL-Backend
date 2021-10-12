@@ -4,6 +4,10 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const { validationResult } = require('express-validator');
+const HttpError = require('../models/http-error');
+
+
 const Task = require('../models/task');
 //needed or disruptive?
 const fs = require("fs");
@@ -68,19 +72,40 @@ router.get("/:id",  (req, res, next) => {
       }
 )
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res, next) => {
     console.log("Data has hit post endpoint");
     console.log(req.body);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return next(
+        new HttpError('Invalid inputs passed, please check your data.', 422)
+      );
+    }
+  
+    const { title, description, tags, assignedTo, creator } = req.body;
+    const createdTask = new Task({
+    title,
+    description,
+    tags, 
+    assignedTo, 
+     creator
+});
     
-    res.send("Data has been received");
+  try {
+    await createdTask.save();
+  } catch (err) {
+    const error = new HttpError(
+      'Creating place failed, please try again.',
+      500
+    );
+    return next(error);
+  }
+  
+  res.status(201).json({ task: createdTask });
+    //res.send("Data has been received");
 });
 
-// const createdtask = new Task({
-//     title,
-//     description,
-//     tags, 
-//     assignedTo
-// });
+
 
 
 module.exports = router;
